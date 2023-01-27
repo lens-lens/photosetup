@@ -1,13 +1,20 @@
 import imghdr
+from loguru import logger
 
 def is_file_image(file_path: str) -> bool:
-    # 1. Load a file from a file_path
-    # file_image = open(file_path)
-    # 2. Check file type
+    logger.debug(f'Dostałam ściezkę {file_path}')
     detected_image_type = imghdr.what(file_path)
+    logger.debug(f'Wykryty typ obrazka to {detected_image_type}')
     if detected_image_type is None:
+        logger.warning('Plik nie jest obrazkiem')
         return False
     if type(detected_image_type) == str:
         return True
-    # 3. If type == image return True else return False
+
+# ponizszy kod nie wykona się przy importowaniu tego pliku
+if __name__ ==  "__main__":
+    a = '/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/image.png' 
+    result = is_file_image(a)
+    print(is_file_image)
+
 

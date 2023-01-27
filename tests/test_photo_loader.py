@@ -11,8 +11,3 @@ def test_is_file_image_false():
     expected_result = False
     result = photo_loader.is_file_image(test_file)
     assert(result == expected_result)
-
-
-    
-
-
