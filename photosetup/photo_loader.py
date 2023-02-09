@@ -1,5 +1,6 @@
 import imghdr
 from loguru import logger
+from PIL import Image, ExifTags
 
 def is_file_image(file_path: str) -> bool:
     logger.debug(f'Dostałam ściezkę {file_path}')
@@ -11,10 +12,15 @@ def is_file_image(file_path: str) -> bool:
     if type(detected_image_type) == str:
         return True
 
-# ponizszy kod nie wykona się przy importowaniu tego pliku
+def show_iso(file_path: str):
+    img = Image.open("/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/Jacek_red-9 75dpi.jpg")
+    exif = { ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS }
+    return exif["ISOSpeedRatings"]
+
+# ponizszy kod nie wykona się w nowym .py przy importowaniu tego pliku .py
 if __name__ ==  "__main__":
-    a = '/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/image.png' 
+    a = '/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/Jacek_red-9 75dpi.jpg' 
     result = is_file_image(a)
-    print(is_file_image)
-
-
+    print(result)
+    show = show_iso(a)
+    print(show)
