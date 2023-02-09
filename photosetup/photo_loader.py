@@ -18,7 +18,18 @@ def show_metadatas(file_path: str) -> int:
     if exif is None:
         logger.warning('Obrazek nie ma podanych metadanych')
         return None
-    return exif
+    # iso = exif.get('ISOSpeedRatings', 'Brak ISO')
+    # exposure = exif.get('ExposureProgram', 'Brak ekspozycji')
+    # shutter_speed = exif.get('ShutterSpeedValue', 'Brak czasu migawki')
+    # apperture = exif.get('ApertureValue', 'Brak przysłony')
+    
+    metadatas = {
+    'Iso' : exif.get('ISOSpeedRatings', 'Brak ISO'),
+    'Exposure' : exif.get('ExposureProgram', 'Brak ekspozycji'),
+    'Shutter_speed' : exif.get('ShutterSpeedValue', 'Brak czasu migawki'),
+    'Apperture' : exif.get('ApertureValue', 'Brak przysłony'),
+    }
+    return metadatas
 
 # ponizszy kod nie wykona się w nowym .py przy importowaniu tego pliku .py
 if __name__ ==  "__main__":
