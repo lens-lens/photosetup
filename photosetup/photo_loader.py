@@ -12,7 +12,7 @@ def is_file_image(file_path: str) -> bool:
     if type(detected_image_type) == str:
         return True
 
-def show_iso(file_path: str):
+def show_iso(file_path: str) -> int:
     img = Image.open("/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/Jacek_red-9 75dpi.jpg")
     exif = { ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS }
     return exif["ISOSpeedRatings"]
