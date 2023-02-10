@@ -12,8 +12,8 @@ def is_file_image(file_path: str) -> bool:
     if type(detected_image_type) == str:
         return True
 
-def show_metadatas(file_path: str) -> int: 
-    img = Image.open("/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/Jacek_red-9 75dpi.jpg")
+def show_metadata(file_path: str) -> int: 
+    img = Image.open(file_path)
     exif = { ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS }
     if exif is None:
         logger.warning('Obrazek nie ma podanych metadanych')
@@ -23,18 +23,18 @@ def show_metadatas(file_path: str) -> int:
     # shutter_speed = exif.get('ShutterSpeedValue', 'Brak czasu migawki')
     # apperture = exif.get('ApertureValue', 'Brak przysłony')
     
-    metadatas = {
+    metadata = {
     'Iso' : exif.get('ISOSpeedRatings', 'Brak ISO'),
     'Exposure' : exif.get('ExposureProgram', 'Brak ekspozycji'),
     'Shutter_speed' : exif.get('ShutterSpeedValue', 'Brak czasu migawki'),
     'Apperture' : exif.get('ApertureValue', 'Brak przysłony'),
     }
-    return metadatas
+    return metadata
 
 # ponizszy kod nie wykona się w nowym .py przy importowaniu tego pliku .py
 if __name__ ==  "__main__":
     a = '/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/Jacek_red-9 75dpi.jpg' 
     result = is_file_image(a)
     print(result)
-    show = show_metadatas(a)
+    show = show_metadata(a)
     print(show)
