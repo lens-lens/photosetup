@@ -18,6 +18,12 @@ def test_show_metadata():
     result = photo_loader.show_metadata(test_file)
     assert(result == expected_result)
 
+def test_show_metadata_without_metadata():
+    test_file = "/Users/milenanapierala/Desktop/PROJECTS/photosetup/tests/image.png"
+    expected_result = {}
+    result = photo_loader.show_metadata(test_file)
+    assert(result == expected_result)
+
 #TODO test dla show_metadata, jeśli plik nie ma metadanych
 #uyć image, oczekiwany rezultat, rezultat, assert
 
