@@ -16,6 +16,7 @@ def show_metadata(file_path: str) -> int:
     img = Image.open(file_path)
     image_metadata = img._getexif()
     if type(image_metadata) != dict:
+        logger.warning('Obrazek nie ma podanych metadanych')
         return {}
 
     exif = { ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS }
@@ -42,3 +43,12 @@ if __name__ ==  "__main__":
     print(result)
     show = show_metadata(a)
     print(show)
+
+    import os #operating system - pozwala sprawdzić zawartość folderu
+    directory = "/Users/milenanapierala/Desktop/SESSIONS (after)/2023/1 - Jacek (light)"
+    for file in os.listdir(directory):
+        if file.endswith("tif"):
+        # if file[-3:] == "tif" (inny sposób)
+            continue
+        print(file)
+        print(show_metadata(directory+"/"+file))
